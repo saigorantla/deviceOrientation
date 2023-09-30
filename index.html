@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Orientation Demo</title>
+    <style>
+        /* CSS for styling */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #landscape-content {
+            display: none;
+            text-align: center;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <!-- Portrait content -->
+    <h1 id="portrait-content">Welcome to Portrait Mode we support this</h1>
+
+    <!-- Landscape content -->
+    <h2 id="landscape-content">This orientation is not supported. Please switch to Portrait mode.</h2>
+
+    <script>
+        // Function to check and respond to screen orientation changes
+        function handleOrientationChange(mq) {
+            if (mq.matches) {
+                // Portrait mode
+                document.getElementById('portrait-content').style.display = 'block';
+                document.getElementById('landscape-content').style.display = 'none';
+            } else {
+                // Landscape mode
+                document.getElementById('portrait-content').style.display = 'none';
+                document.getElementById('landscape-content').style.display = 'block';
+            }
+        }
+
+        // Create a MediaQueryList object to monitor screen orientation
+        const mq = window.matchMedia("(orientation: portrait)");
+
+        // Initial check and response to screen orientation
+        handleOrientationChange(mq);
+
+        // Add an event listener to respond to orientation changes
+        mq.addListener(handleOrientationChange);
+    </script>
+</body>
+</html>
